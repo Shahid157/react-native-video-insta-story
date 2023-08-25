@@ -11,13 +11,13 @@
 #### 1. Step
 
 ```javascript
-npm install react-native-insta-story --save
+npm install react-native-video-insta-story --save
 ```
 
 or
 
 ```javascript
-yarn add react-native-insta-story
+yarn add react-native-video-insta-story
 ```
 
 #### 2. Step
@@ -29,7 +29,7 @@ cd ios && pod install
 ## Import
 
 ```javascript
-import InstaStory from 'react-native-insta-story';
+import InstaStory from 'react-native-video-insta-story';
 ```
 
 ## Props
