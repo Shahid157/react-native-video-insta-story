@@ -17,6 +17,8 @@ export const Story = ({
   pressedBorderColor,
   unPressedAvatarTextColor,
   pressedAvatarTextColor,
+  horizontal,
+  numColumns,
   style,
   onStart,
   onClose,
@@ -176,6 +178,8 @@ export const Story = ({
         <StoryCircleListView
           handleStoryItemPress={_handleStoryItemPress}
           data={dataState}
+          horizontal={horizontal}
+          numColumns={numColumns}
           avatarSize={avatarSize}
           unPressedBorderColor={unPressedBorderColor}
           pressedBorderColor={pressedBorderColor}

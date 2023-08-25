@@ -6,12 +6,14 @@ import {
   Text,
   StyleSheet,
   Platform,
+  ImageBackground,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { usePrevious } from './helpers/StateHelpers';
 import { IUserStory, StoryCircleListItemProps } from './interfaces';
-
 import DEFAULT_AVATAR from './assets/images/no_avatar.png';
+import eyeIcon from './assets/images/eye-icon.png';
 
 const StoryCircleListItem = ({
   item,
@@ -46,67 +48,62 @@ const StoryCircleListItem = ({
   const avatarWrapperSize = avatarSize + 4;
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => _handleItemPress(item)}
-        style={[
-          styles.avatarWrapper,
-          {
-            height: avatarWrapperSize,
-            width: avatarWrapperSize,
-          },
-          avatarWrapperStyle,
-          !isPressed
-            ? {
-                borderColor: unPressedBorderColor ?? 'red',
-              }
-            : {
-                borderColor: pressedBorderColor ?? 'grey',
-              },
-        ]}
+    <TouchableWithoutFeedback onPress={() => _handleItemPress(item)}>
+      <ImageBackground
+        style={styles.imageContainer}
+        imageStyle={styles.imageStyle}
+        source={{ uri: item.user_image }}
       >
-        <Image
+        <TouchableOpacity
+          onPress={() => _handleItemPress(item)}
           style={[
+            styles.avatarWrapper,
             {
-              height: avatarSize,
-              width: avatarSize,
-              borderRadius: 100,
-            },
-            avatarImageStyle,
-          ]}
-          source={{ uri: item.user_image }}
-          defaultSource={Platform.OS === 'ios' ? DEFAULT_AVATAR : null}
-        />
-      </TouchableOpacity>
-      {showText && (
-        <Text
-          numberOfLines={1}
-          ellipsizeMode="tail"
-          style={[
-            {
+              height: avatarWrapperSize,
               width: avatarWrapperSize,
-              ...styles.text,
-              ...avatarTextStyle,
             },
-            isPressed
-              ? { color: pressedAvatarTextColor || undefined }
-              : { color: unPressedAvatarTextColor || undefined },
+            avatarWrapperStyle,
+            !isPressed
+              ? {
+                  borderColor: unPressedBorderColor ?? '#8a99e3',
+                }
+              : {
+                  borderColor: pressedBorderColor ?? 'grey',
+                },
           ]}
         >
-          {item.user_name}
-        </Text>
-      )}
-    </View>
+          <Image
+            style={[
+              {
+                height: avatarSize,
+                width: avatarSize,
+                borderRadius: 100,
+              },
+              avatarImageStyle,
+            ]}
+            source={{ uri: item.user_image }}
+            defaultSource={Platform.OS === 'ios' ? DEFAULT_AVATAR : null}
+          />
+        </TouchableOpacity>
+        {showText && (
+          <Text numberOfLines={1} ellipsizeMode="tail" style={styles.text}>
+            @{item.user_name}
+          </Text>
+        )}
+        <View style={styles.viewsContainer}>
+          <Image style={styles.eyeIconImage} source={eyeIcon} />
+          <Text style={styles.viewCountTextStyle}>
+            {item?.views ? item?.views : ''} Views
+          </Text>
+        </View>
+      </ImageBackground>
+    </TouchableWithoutFeedback>
   );
 };
 
 export default StoryCircleListItem;
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 5,
-    marginRight: 10,
-  },
   avatarWrapper: {
     borderWidth: 2,
     justifyContent: 'center',
@@ -118,9 +115,37 @@ const styles = StyleSheet.create({
     width: 64,
   },
   text: {
-    marginTop: 3,
     textAlign: 'center',
-    alignItems: 'center',
+    color: 'white',
     fontSize: 11,
+    marginTop: 5,
+  },
+  imageContainer: {
+    width: 125,
+    height: 160,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    margin: 5,
+  },
+  imageStyle: { borderRadius: 15, opacity: 0.7 },
+  viewsContainer: {
+    flexDirection: 'row',
+    height: 20,
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 5,
+    alignSelf: 'center',
+  },
+  eyeIconImage: {
+    width: 15,
+    height: 15,
+    alignSelf: 'center',
+    tintColor: 'white',
+  },
+  viewCountTextStyle: {
+    marginTop: 3.5,
+    marginLeft: 3,
+    fontSize: 10,
+    color: 'white',
   },
 });

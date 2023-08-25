@@ -214,7 +214,7 @@ export const StoryListItem = ({
             source={{ uri: content[current].story_image }}
             style={[styles.image, storyImageStyle]}
           />
-          {load && (
+          {true && (
             <View style={styles.spinnerContainer}>
               <ActivityIndicator size="large" color={'white'} />
             </View>
@@ -393,20 +393,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   avatarImage: {
-    height: 30,
-    width: 30,
+    marginTop: 20,
+    height: 50,
+    width: 50,
     borderRadius: 100,
   },
   avatarText: {
     fontWeight: 'bold',
     color: 'white',
     paddingLeft: 10,
+    marginTop: 20,
   },
   closeIconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 50,
+    height: 60,
     paddingHorizontal: 15,
+    marginTop: 5,
   },
   pressContainer: {
     flex: 1,

@@ -1,4 +1,6 @@
-# react-native-insta-story
+# react-native-video-insta-story
+
+# Shahid chawdhary added a video feature in this cloned lib
 
 <p align="center">
 <img src="./images/example.gif" height="500" />
@@ -66,7 +68,7 @@ import InstaStory from 'react-native-insta-story';
 ### Basic
 
 ```javascript
-import InstaStory from 'react-native-insta-story';
+import InstaStory from 'react-video-native-insta-story';
 
 const data = [
   {
@@ -113,17 +115,12 @@ const data = [
   },
 ];
 
-<InstaStory
-  data={data}
-  duration={10}
-/>
-
-
+<InstaStory data={data} duration={10} />;
 ```
 
 ### Custom components
 
-The render component functions are all passed `item` as a prop which is the current [IUserStoryItem](./src/interfaces/index.ts#L15) being displayed.
+The render component functions are all passed `item` as a prop which is the current [IUserStoryItem](./src/interfaces/index.ts) being displayed.
 
 `renderSwipeUpComponent` and `renderCloseComponent` are both passed the `onPress` prop which is a function that closes the current story item modal and calls the `IUserStoryItem.onPress` function. `onPress` is passed so you could add other buttons. This is useful when adding a button which has it's own `onPress` prop, eg. a share button, next to the close button.
 
@@ -175,5 +172,5 @@ const handleSeenStories = async (item) => {
     </View>
   )}
   style={{ marginTop: 30 }}
-/>
+/>;
 ```
