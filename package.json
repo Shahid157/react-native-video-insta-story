@@ -1,7 +1,7 @@
 {
-  "name": "react-native-insta-story",
-  "title": "React Native Insta Story",
-  "version": "1.1.9",
+  "name": "react-native-video-insta-story",
+  "title": "React Native video Insta Story",
+  "version": "1.1.11",
   "description": "Story component for React Native.",
   "main": "index.ts",
   "files": [
@@ -17,14 +17,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caglardurmus/react-native-insta-story.git",
-    "baseUrl": "https://github.com/caglardurmus/react-native-insta-story"
+    "url": "git+https://github.com/shahid157/react-native-video-insta-story.git",
+    "baseUrl": "https://github.com/shahid157/react-native-video-insta-story"
   },
   "keywords": [
     "react-native",
     "insta-story",
     "story",
-    "instagram"
+    "instagram",
+    "video-story",
+    "card-feature"
   ],
   "author": {
     "name": "Shahid",
