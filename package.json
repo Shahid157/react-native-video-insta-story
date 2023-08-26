@@ -1,7 +1,7 @@
 {
   "name": "react-native-video-insta-story",
   "title": "React Native video Insta Story",
-  "version": "1.1.12",
+  "version": "1.1.13",
   "description": "Story component for React Native.",
   "main": "index.ts",
   "files": [
@@ -26,7 +26,11 @@
     "story",
     "instagram",
     "video-story",
-    "card-feature"
+    "card-feature",
+    "facebook-story",
+    "tiktok-story",
+    "youtube-story",
+    "card-story"
   ],
   "author": {
     "name": "Shahid",
