@@ -7,8 +7,7 @@
 ## Author Shahid Chawdhary
 
 <p align="center">
-<img src="./images/iphoneView.png" height="500" />
-<img src="./images/insideView.png" height="500" />
+<img src="./images/storyfeature.gif" height="500" />
 </p>
 
 ## Install
