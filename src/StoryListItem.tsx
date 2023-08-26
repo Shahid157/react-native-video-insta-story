@@ -20,6 +20,7 @@ import {
   NextOrPrevious,
   StoryListItemProps,
 } from './interfaces';
+import Video from 'react-native-video';
 
 const { width, height } = Dimensions.get('window');
 
@@ -33,6 +34,7 @@ export const StoryListItem = ({
   onFinish,
   onClosePress,
   stories,
+  videoProps,
   currentPage,
   onStorySeen,
   renderCloseComponent,
@@ -209,11 +211,19 @@ export const StoryListItem = ({
     >
       <SafeAreaView>
         <View style={styles.backgroundContainer}>
-          <Image
-            onLoadEnd={() => start()}
-            source={{ uri: content[current].story_image }}
-            style={[styles.image, storyImageStyle]}
-          />
+          {content[current].story_image ? (
+            <Image
+              onLoadEnd={() => start()}
+              source={{ uri: content[current].story_image }}
+              style={[styles.image, storyImageStyle]}
+            />
+          ) : (
+            <Video
+              source={{ uri: content[current].story_video }}
+              {...videoProps}
+            ></Video>
+          )}
+
           {true && (
             <View style={styles.spinnerContainer}>
               <ActivityIndicator size="large" color={'white'} />

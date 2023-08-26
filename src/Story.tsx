@@ -19,6 +19,7 @@ export const Story = ({
   pressedAvatarTextColor,
   horizontal,
   numColumns,
+  videoProps,
   style,
   onStart,
   onClose,
@@ -113,6 +114,7 @@ export const Story = ({
         <StoryListItem
           duration={duration * 1000}
           key={i}
+          videoProps={videoProps}
           userId={x.user_id}
           profileName={x.user_name}
           profileImage={x.user_image}

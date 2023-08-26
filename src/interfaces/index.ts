@@ -2,6 +2,7 @@ import {
   ColorValue,
   FlatListProps,
   ImageStyle,
+  StyleProp,
   TextStyle,
   ViewStyle,
 } from 'react-native';
@@ -85,6 +86,8 @@ interface SharedCircleListProps {
 
 export interface StoryCircleListViewProps extends SharedCircleListProps {
   data: IUserStory[];
+  horizontal?: boolean;
+  numColumns?: number;
   /**
    * Custom props for the avatar FlatList.
    *
@@ -109,6 +112,8 @@ export interface StoryListItemProps {
   userId: number;
   /** Name of the user - IUserStory.user_name */
   profileName: string;
+
+  videoProps?: any;
   /** Profile picture of the user - IUserStory.user_image */
   profileImage: string | undefined;
   /** Time in seconds */
@@ -161,7 +166,10 @@ export interface StoryProps {
   data: IUserStory[];
   /** Time in seconds */
   duration: number;
-  /** A custom size for the avatar rendered in the FlatList */
+  horizontal?: boolean;
+  numColumns?: number;
+  videoProps?: any;
+  /**  custom size for the avatar rendered in the FlatList */
   avatarSize?: number;
   /** Style prop for the avatar FlatList container */
   style?: ViewStyle;

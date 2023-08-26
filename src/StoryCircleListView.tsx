@@ -5,6 +5,8 @@ import { StoryCircleListViewProps } from 'src/interfaces';
 
 const StoryCircleListView = ({
   data,
+  numColumns,
+  horizontal,
   handleStoryItemPress,
   unPressedBorderColor,
   pressedBorderColor,
@@ -21,7 +23,8 @@ const StoryCircleListView = ({
     <FlatList
       keyExtractor={(_item, index) => index.toString()}
       data={data}
-      horizontal
+      horizontal={horizontal}
+      numColumns={numColumns}
       style={styles.paddingLeft}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
