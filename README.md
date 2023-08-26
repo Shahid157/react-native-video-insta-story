@@ -1,8 +1,10 @@
 # react-native-video-insta-story
 
-# It's a customised user stories for react native with video and a card style view
+### It's a customised user stories for react native with video and a card style view
 
-# Author Shahid Chawdhary
+#### I'm still working on it to make it more flexible and easy to use. you can write me your quries and questions at (Shahid.chawdhary07@gmail.com)
+
+## Author Shahid Chawdhary
 
 <p align="center">
 <img src="./images/iphoneView.png" height="500" />
@@ -65,84 +67,294 @@ import InstaStory from 'react-native-video-insta-story';
 | storyImageStyle            | For story image style                               | ImageStyle    |               |
 | storyAvatarImageStyle      | For story avatar image style                        | ImageStyle    |               |
 | storyContainerStyle        | For story container style                           | ViewStyle     |               |
+| horizontal={true}          | for showing horizontal stories                      | boolean       |               |
+| horizontal={false}         | for showing vertical stories                        | boolean       |               |
+| numColumns                 | for showing columns                                 | number        |               |
 
 ## Usage
 
-### Basic
+#### First let's have a look at horizonatal user stories,(you can use horizontal or vertical stories)
+
+### Basic for horizonatal stories
 
 ```javascript
 import InstaStory from 'react-video-native-insta-story';
 
-const data = [
+const storyData =[
   {
   "user_id": 1,
   "user_image":
   'https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg',
-  "user_name": '@Shahid Chawdhary',
-  "views": "100",
+  "user_name": 'sam',
+  "views": "100k",
   "stories": [
     {
       "story_id": 1,
-      "story_image":
-        'https://image.freepik.com/free-vector/universe-mobile-wallpaper-with-planets_79603-600.jpg',
+      "story_likes": "1k",
+      "story_views":"2k",
+      "story_video":
+        'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
       "swipeText": 'Custom swipe text for this story',
       "onPress": () => console.log('story 1 swiped'),
     },
     {
       "story_id": 2,
-      "story_image":
-        'https://image.freepik.com/free-vector/mobile-wallpaper-with-fluid-shapes_79603-601.jpg',
+      "story_likes": "2k",
+      "story_views":"10k",
+      "story_video":
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
   ],
 },
 {
+  "user_id": 1,
+  "user_image":
+  'https://i.ibb.co/f83vDyh/profile1.jpg',
+  "user_name": 'Fab',
+  "views": "2k",
+  "stories": [
+    {
+      "story_id": 1,
+      "story_likes": "1k",
+      "story_views":"2k",
+      "story_image":
+        'https://i.ibb.co/f83vDyh/profile1.jpg',
+      "swipeText": 'Custom swipe text for this story',
+      "onPress": () => console.log('story 1 swiped'),
+    },
+    {
+      "story_id": 2,
+      "story_likes": "100",
+      "story_views":"3k",
+      "story_image":
+        'https://i.ibb.co/WFkJJ07/profile2.jpg',
+    },
+  ],
+},
+{
+  "user_id": 1,
+  "user_image":
+  'https://i.ibb.co/WFkJJ07/profile2.jpg',
+  "user_name": 'Zee',
+  "views": "10k",
+  "stories": [
+    {
+      "story_id": 1,
+      "story_likes": "3.5k",
+      "story_views":"5k",
+      "story_image":
+        'https://i.ibb.co/pxQZ2Dj/profile3.jpg',
+      "swipeText": 'Custom swipe text for this story',
+      "onPress": () => console.log('story 1 swiped'),
+    }
+  ],
+},
+{
+  "user_id": 1,
+  "user_image":
+  'https://i.ibb.co/pxQZ2Dj/profile3.jpg',
+  "user_name": 'John',
+  "views": "10.5k",
+  "stories": [
+    {
+      "story_id": 1,
+      "story_likes": "1k",
+      "story_views":"10k",
+      "story_image":
+      'https://i.ibb.co/f83vDyh/profile1.jpg',
+      "swipeText": 'Custom swipe text for this story',
+      "onPress": () => console.log('story 1 swiped'),
+    },
+    {
+      "story_id": 2,
+      "story_likes": "2k",
+      "story_views":"2k",
+      "story_image":
+      'https://i.ibb.co/pxQZ2Dj/profile3.jpg',
+    },
+  ],
+},
+{
+  "user_id": 1,
+  "user_image":
+  'https://i.ibb.co/7rx3xfJ/profile4.jpg',
+  "user_name": 'Eliza',
+  "views": "12k",
+  "stories": [
+    {
+      "story_id": 1,
+      "story_likes": "10k",
+      "story_views":"12k",
+      "story_image":
+      'https://i.ibb.co/7rx3xfJ/profile4.jpg',
+      "swipeText": 'Custom swipe text for this story',
+      "onPress": () => console.log('story 1 swiped'),
+    },
+    {
+      "story_id": 2,
+      "story_likes": "18k",
+      "story_views":"20k",
+      "story_image":
+        'https://i.ibb.co/0rMM0pX/profile5.jpg',
+    },
+  ],
+}
+]
+
+ <InstaStory
+          style={{marginLeft: 10}}
+          horizontal={true}
+          data={storyData}
+          duration={10}
+        />;
+```
+
+#### horizontal view
+
+<p align="center">
+<img src="./images/horizontalView.png" height="500" />
+</p>
+
+### Basic for vertical 3 column stories
+
+```javascript
+import InstaStory from 'react-video-native-insta-story';
+
+const storyData =[
+  {
   "user_id": 1,
   "user_image":
   'https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg',
   "user_name": 'sam',
-  "views": "100",
+  "views": "100k",
   "stories": [
     {
       "story_id": 1,
-      "story_image":
-        'https://image.freepik.com/free-vector/universe-mobile-wallpaper-with-planets_79603-600.jpg',
+      "story_likes": "1k",
+      "story_views":"2k",
+      "story_video":
+        'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4',
       "swipeText": 'Custom swipe text for this story',
       "onPress": () => console.log('story 1 swiped'),
     },
     {
       "story_id": 2,
-      "story_image":
-        'https://image.freepik.com/free-vector/mobile-wallpaper-with-fluid-shapes_79603-601.jpg',
+      "story_likes": "2k",
+      "story_views":"10k",
+      "story_video":
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
     },
   ],
 },
 {
   "user_id": 1,
   "user_image":
-  'https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg',
-  "user_name": 'Maulvi',
-  "views": "100",
+  'https://i.ibb.co/f83vDyh/profile1.jpg',
+  "user_name": 'Fab',
+  "views": "2k",
   "stories": [
     {
       "story_id": 1,
+      "story_likes": "1k",
+      "story_views":"2k",
       "story_image":
-        'https://image.freepik.com/free-vector/universe-mobile-wallpaper-with-planets_79603-600.jpg',
+        'https://i.ibb.co/f83vDyh/profile1.jpg',
       "swipeText": 'Custom swipe text for this story',
       "onPress": () => console.log('story 1 swiped'),
     },
     {
       "story_id": 2,
+      "story_likes": "100",
+      "story_views":"3k",
       "story_image":
-        'https://image.freepik.com/free-vector/mobile-wallpaper-with-fluid-shapes_79603-601.jpg',
+        'https://i.ibb.co/WFkJJ07/profile2.jpg',
     },
   ],
 },
-
+{
+  "user_id": 1,
+  "user_image":
+  'https://i.ibb.co/WFkJJ07/profile2.jpg',
+  "user_name": 'Zee',
+  "views": "10k",
+  "stories": [
+    {
+      "story_id": 1,
+      "story_likes": "3.5k",
+      "story_views":"5k",
+      "story_image":
+        'https://i.ibb.co/pxQZ2Dj/profile3.jpg',
+      "swipeText": 'Custom swipe text for this story',
+      "onPress": () => console.log('story 1 swiped'),
+    }
+  ],
+},
+{
+  "user_id": 1,
+  "user_image":
+  'https://i.ibb.co/pxQZ2Dj/profile3.jpg',
+  "user_name": 'John',
+  "views": "10.5k",
+  "stories": [
+    {
+      "story_id": 1,
+      "story_likes": "1k",
+      "story_views":"10k",
+      "story_image":
+      'https://i.ibb.co/f83vDyh/profile1.jpg',
+      "swipeText": 'Custom swipe text for this story',
+      "onPress": () => console.log('story 1 swiped'),
+    },
+    {
+      "story_id": 2,
+      "story_likes": "2k",
+      "story_views":"2k",
+      "story_image":
+      'https://i.ibb.co/pxQZ2Dj/profile3.jpg',
+    },
+  ],
+},
+{
+  "user_id": 1,
+  "user_image":
+  'https://i.ibb.co/7rx3xfJ/profile4.jpg',
+  "user_name": 'Eliza',
+  "views": "12k",
+  "stories": [
+    {
+      "story_id": 1,
+      "story_likes": "10k",
+      "story_views":"12k",
+      "story_image":
+      'https://i.ibb.co/7rx3xfJ/profile4.jpg',
+      "swipeText": 'Custom swipe text for this story',
+      "onPress": () => console.log('story 1 swiped'),
+    },
+    {
+      "story_id": 2,
+      "story_likes": "18k",
+      "story_views":"20k",
+      "story_image":
+        'https://i.ibb.co/0rMM0pX/profile5.jpg',
+    },
+  ],
+}
 ]
 
-<InstaStory data={data} duration={10} />;
+ <InstaStory
+          style={{marginLeft: 10}}
+          horizontal={false}
+          numColumns={3}
+          data={storyData}
+          duration={10}
+        />;
 ```
 
+#### vertical 3 column view
+
+<p align="center">
+<img src="./images/verticalView.png" height="500" />
+</p>
 ### Custom components
 
 The render component functions are all passed `item` as a prop which is the current [IUserStoryItem](./src/interfaces/index.ts) being displayed.

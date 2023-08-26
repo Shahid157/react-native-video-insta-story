@@ -21,6 +21,8 @@ import {
   StoryListItemProps,
 } from './interfaces';
 import Video from 'react-native-video';
+import eyeIcon from './assets/images/eye-icon.png';
+import fireIcon from './assets/images/fire_icon.png';
 
 const { width, height } = Dimensions.get('window');
 
@@ -209,29 +211,47 @@ export const StoryListItem = ({
       config={config}
       style={[styles.container, storyContainerStyle]}
     >
-      <SafeAreaView>
-        <View style={styles.backgroundContainer}>
-          {content[current].story_image ? (
+      {content[current].story_image ? (
+        <SafeAreaView>
+          <View style={styles.backgroundContainer}>
             <Image
               onLoadEnd={() => start()}
               source={{ uri: content[current].story_image }}
               style={[styles.image, storyImageStyle]}
             />
-          ) : (
             <Video
               source={{ uri: content[current].story_video }}
+              style={styles.backgroundVideo}
               {...videoProps}
             ></Video>
-          )}
-
-          {true && (
+            {load && (
+              <View style={styles.spinnerContainer}>
+                <ActivityIndicator size="large" color={'white'} />
+              </View>
+            )}
+          </View>
+        </SafeAreaView>
+      ) : (
+        <View style={styles.backgroundContainer}>
+          <Video
+            source={{ uri: content[current]?.story_video }}
+            style={styles.backgroundVideo}
+            {...videoProps}
+          ></Video>
+          {load && (
             <View style={styles.spinnerContainer}>
               <ActivityIndicator size="large" color={'white'} />
             </View>
           )}
         </View>
-      </SafeAreaView>
-      <View style={styles.flexCol}>
+      )}
+      <View
+        style={{
+          marginTop: content[current]?.story_video ? 50 : 0,
+          flex: 1,
+          flexDirection: 'column',
+        }}
+      >
         <View
           style={[styles.animationBarContainer, animationBarContainerStyle]}
         >
@@ -328,14 +348,28 @@ export const StoryListItem = ({
           item: content[current],
         })
       ) : (
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={onSwipeUp}
-          style={styles.swipeUpBtn}
-        >
-          <Text style={styles.swipeText}></Text>
-          <Text style={styles.swipeText}>{swipeText}</Text>
-        </TouchableOpacity>
+        <View style={styles.swipeUpBtn}>
+          <Image style={styles.fireIconImage} source={fireIcon} />
+          <Text style={styles.swipeText}>{content[current]?.story_likes}</Text>
+          <View
+            style={{
+              borderRadius: 100,
+              backgroundColor: 'rgba(52, 52, 52, 0.8)',
+              padding: 5,
+              marginRight: 5,
+              height: 40,
+              width: 40,
+              justifyContent: 'center',
+            }}
+          >
+            <Image
+              resizeMode="cover"
+              style={styles.eyeIconImage}
+              source={eyeIcon}
+            />
+          </View>
+          <Text style={styles.swipeText}>{content[current]?.story_views}</Text>
+        </View>
       )}
     </GestureRecognizer>
   );
@@ -351,14 +385,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+    justifyContent: 'center',
   },
   flex: {
     flex: 1,
   },
-  flexCol: {
-    flex: 1,
-    flexDirection: 'column',
-  },
+
   flexRowCenter: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -407,6 +439,8 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 100,
+    borderColor: '#8a99e3',
+    borderWidth: 1,
   },
   avatarText: {
     fontWeight: 'bold',
@@ -426,11 +460,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   swipeUpBtn: {
+    flexDirection: 'row',
     position: 'absolute',
-    right: 0,
-    left: 0,
+    opacity: 0.6,
+    height: 50,
+    width: 200,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
-    bottom: Platform.OS == 'ios' ? 20 : 50,
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
+    bottom: Platform.OS == 'ios' ? 120 : 100,
   },
   whiteText: {
     color: 'white',
@@ -438,5 +478,30 @@ const styles = StyleSheet.create({
   swipeText: {
     color: 'white',
     marginTop: 5,
+    fontSize: 18,
+    textAlign: 'center',
+    marginRight: 5,
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  eyeIconImage: {
+    width: 30,
+    height: 30,
+    alignSelf: 'center',
+    tintColor: 'white',
+    marginRight: 10,
+    marginLeft: 10,
+  },
+  fireIconImage: {
+    width: 40,
+    height: 40,
+    alignSelf: 'center',
+    marginRight: 5,
+    marginLeft: 5,
   },
 });
